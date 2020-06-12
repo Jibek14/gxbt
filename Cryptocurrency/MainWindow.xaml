@@ -1,0 +1,92 @@
+﻿<Window x:Class="Cryptocurrency.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cryptocurrency"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontWeight" Value="Heavy"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="Goldenrod"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="Khaki"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Background="LightPink">Name</TextBlock>
+            <TextBlock  Grid.Row="1">BNB</TextBlock>
+            <TextBlock  Grid.Row="2">BTC(Bitcoin)</TextBlock>
+            <TextBlock Grid.Row="3" >ETH(Etherium)</TextBlock>
+            <TextBlock  Grid.Row="4">XRP(Ripple)</TextBlock>
+            <TextBlock Grid.Row="5" >BCH(Bitcoin Cash)</TextBlock>
+            <TextBlock Grid.Row="6" >LTC(Litecoin)</TextBlock>
+            <TextBlock Grid.Column="1" Background="LightSalmon">Last Price</TextBlock>
+            <TextBox Grid.Row="1" x:Name="bnbLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="2" x:Name="btcLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="3" x:Name="ethLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="4" x:Name="xrpLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="5" x:Name="bchLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="6" x:Name="ltcLastPriceValue" Grid.Column="1"/>
+            <TextBox Grid.Row="0" Grid.Column="2" Background="BlueViolet">24h Change(%)</TextBox>
+            <TextBox Grid.Column="2" x:Name="bnbPercent" Grid.Row="1"/>
+            <TextBox Grid.Column="2" x:Name="btcPercent" Grid.Row="2"/>
+            <TextBox Grid.Column="2" x:Name="ethPercent" Grid.Row="3"/>
+            <TextBox Grid.Column="2" x:Name="xrpPercent" Grid.Row="4"/>
+            <TextBox Grid.Column="2" x:Name="bchPercent" Grid.Row="5"/>
+            <TextBox Grid.Column="2" x:Name="ltcPercent" Grid.Row="6"/>
+            <Image Source="images/bnb.png" Grid.Column="3" Height="28" Width="28" Grid.Row="1" HorizontalAlignment="Left"/>
+            <Image Source="images/btc.png" Grid.Column="3" Height="28" Width="28" Grid.Row="2" HorizontalAlignment="Left"/>
+            <Image Source="images/eth.png" Grid.Column="3" Height="28" Width="28" Grid.Row="3" HorizontalAlignment="Left"/>
+            <Image Source="images/xrp.png" Grid.Column="3" Height="28" Width="30" Grid.Row="4" HorizontalAlignment="Left"/>
+            <Image Source="images/bch.png" Grid.Column="3" Height="28" Width="30" Grid.Row="5" HorizontalAlignment="Left"/>
+            <Image Source="images/ltc.png" Grid.Column="3" Height="28" Width="30" Grid.Row="6" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Height="200" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid AutoGenerateColumns="False" x:Name="CourseGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
+                    <DataGridTextColumn Binding="{Binding Title}" Header="Title"/>
+                    <DataGridTextColumn Binding="{Binding ChangePercent}" Header="Change percent"/>
+                    <DataGridTextColumn Binding="{Binding LastPrice}" Header="Last price"/>
+                    <DataGridTextColumn Binding="{Binding requestTime}" Header="Request time"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                <TextBlock x:Name="result" Background="Pink" Foreground="Red"></TextBlock>
+                <Button x:Name="deleteButton" Content="Удалить" Click="DeleteButton_Click" />
+                <Button Click="Button_Click">OPEN EXCEL file</Button>
+                <Button x:Name="Exit" Background="Red" Click="Exit_Click">EXIT</Button>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Window>
